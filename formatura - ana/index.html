@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARABÉNS PELA FORMATURA, ANA LAURA! 🎓</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>PARABÉNS PELA FORMATURA,<br>ANA LAURA! 🎓</h1>
+            <p class="subtitle">Você concluiu mais uma etapa na sua vida, e coisas incríveis estão por vir!</p>
+        </header>
+
+        <!-- Botão da cartinha -->
+        <div class="carta-btn" onclick="abrirCarta()">
+        <img src="https://drive.google.com/uc?export=view&id=18E-X2vN65k9TrvQ0EzgLTk7j0CxWliWl" alt="Ler cartinha">
+        <p>Toque aqui para ler a cartinha ✉️</p>
+        </div>
+
+        <section class="frases">
+            <div class="frase">“Você é mais forte do que imagina e mais amada do que consegue ver.” 💕</div>
+            <div class="frase">“O futuro é seu, vai com tudo e arrasa!” 🚀</div>
+            <div class="frase">“Formada e ainda mais linda por dentro e por fora!” 🌸</div>
+            <div class="frase">“Que venham muitas aventuras e histórias lindas!” ✈️</div>
+        </section>
+
+        <section class="galeria">
+            <h2>Memórias favoritas📸</h2>
+            <div class="fotos">
+                <!-- ⇣⇣⇣ COLOQUE OS IDs DAS SUAS FOTOS DO DRIVE AQUI ⇣⇣⇣ -->
+                <img src="https://drive.google.com/file/d/1GRjysbUNgQY3NFIGKM7Qfg3EZ3IMBiJw/view?usp=drive_link" alt="Foto 1">
+                <img src="https://drive.google.com/file/d/1BC3aaZKlWPfi2hcjL17k2VKJX46qrSPq/view?usp=drive_link" alt="Foto 2">
+                <img src="https://drive.google.com/file/d/1GRjysbUNgQY3NFIGKM7Qfg3EZ3IMBiJw/view?usp=drive_link" alt="Foto 3">
+                <img src="https://drive.google.com/file/d/1qC-vgs_vrWX40uDS9LP7l79UqhY4-OId/view?usp=drive_link" alt="Foto 4">
+                <img src="https://drive.google.com/file/d/12ycS0T434AR3P2H3P_uCamI-IP5HLd2p/view?usp=drive_link" alt="Foto 5">
+                <!-- adicione quantas quiser -->
+            </div>
+        </section>
+
+        <footer>
+            <p>Feito com todo carinho por Duda 💌 • 2025</p>
+        </footer>
+    </div>
+
+    <!-- CARTINHA EM PERGAMINHO -->
+    <div id="modalCarta" class="modal">
+        <div class="pergaminho">
+            <span class="fechar" onclick="fecharCarta()">×</span>
+            <div class="carta-texto">
+                <h2>Ana Laura,</h2>
+                <p>
+                    Ana Laura,
+                    Fico muito feliz por você esta finalizando uma etapa da sua vida, e
+                    sinto por não estar presente para prestigiar esse momento. Ainda
+                    que de longe, eu torço e celebro uma conquista tão especial!
+
+                    Você encerra um ciclo importante, cheio de aprendizados,
+                    amizades, desafios e momentos que vão ficar marcados para sempre.
+
+                    Fico feliz em ver a pessoa incrível que você se tornou: amiga,
+                    gentil, forte e cheia de vida. Que venham novos desafios, novas
+                    conquistas, novos rolês e, claro, muitas novas histórias para
+                    contar. A vida está só começando! Agora, na faculdade, você vai
+                    conhecer pessoas novas, novos ambientes, e tenho certeza de
+                    que você vai adorar e que será uma experiência incrível.
+
+                    Que você brilhe por onde passar!
+
+                    Que Nossa Senhora te cubra com o manto sagrado e que Deus
+                    ilumine e guie sua nova caminhada.
+
+                    Obrigada por fazer parte da minha vida e por deixar tudo mais leve
+                    com seu jeitinho doce e divertido. Guardo sempre as nossas
+                    memórias no coração. 
+                    
+                    Que seu caminho seja leve e que cada
+                    passo seja guiado pelo amor e pela coragem. Estou torcendo por
+                    você, hoje e sempre.<br><br>
+                    
+                    <strong>Com carinho,<br>Duda ❤️</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFETES MÁGICOS -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
+        // Confetinhos caindo suavemente o tempo todo
+        setInterval(function() {
+            confetti({
+                particleCount: 5,
+                angle: 90,
+                spread: 45,
+                origin: { x: 0.5, y: 0 },
+                colors: ['#ff6b9d', '#ffb3d1', '#a7e9ff', '#ffd700', '#ff69b4'],
+                gravity: 0.3,
+                scalar: 1.2
+            });
+        }, 800);
+
+        // Explosão gigante quando abrir a carta
+        function abrirCarta() {
+            document.getElementById("modalCarta").style.display = "flex";
+            confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
+            confetti({ particleCount: 100, angle: 60, spread: 70, origin: { x: 0 } });
+            confetti({ particleCount: 100, angle: 120, spread: 70, origin: { x: 1 } });
+        }
+
+        function fecharCarta() {
+            document.getElementById("modalCarta").style.display = "none";
+        }
+
+        // Fechar clicando fora
+        window.onclick = function(e) {
+            if (e.target === document.getElementById("modalCarta")) fecharCarta();
+        }
+    </script>
+</body>
+</html>
