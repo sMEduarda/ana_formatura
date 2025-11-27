@@ -1,126 +1,243 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PARABÉNS PELA FORMATURA, ANA LAURA! 🎓</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surpresa para Ana Laura</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #ffeef8, #fff0f8);
+      color: #333;
+      min-height: 100vh;
+      padding: 20px 15px;
+    }
+
+    .inicio { text-align: center; max-width: 90%; margin: 0 auto; }
+    .inicio h1 {
+      font-size: 2.8rem;
+      color: #d81b60;
+      margin: 30px 0 15px;
+      line-height: 1.2;
+    }
+    .inicio p {
+      font-size: 1.35rem;
+      color: #e91e63;
+      margin-bottom: 30px;
+    }
+
+    .fotos-inicio {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+    .fotos-inicio img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+      transition: transform 0.3s;
+    }
+    .fotos-inicio img:hover { transform: scale(1.06); }
+
+    button.abrir {
+      background: #ff4081;
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      font-size: 1.55rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(255,64,129,0.4);
+      transition: all 0.3s;
+    }
+    button.abrir:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 35px rgba(255,64,129,0.5);
+    }
+
+    .carta {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 999;
+      padding: 15px;
+      overflow-y: auto;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .conteudo-carta {
+      background: white;
+      max-width: 720px;
+      width: 95%;
+      margin: 20px auto;
+      padding: 45px;
+      border-radius: 25px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+      position: relative;
+      animation: abrirCarta 0.9s ease-out;
+    }
+    @keyframes abrirCarta { from {transform:scale(0.5); opacity:0;} to {transform:scale(1); opacity:1;} }
+
+    .fechar {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 3.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #d81b60;
+    }
+    .conteudo-carta h2 {
+      text-align: center;
+      color: #d81b60;
+      margin-bottom: 35px;
+      font-size: 2.5rem;
+    }
+    .conteudo-carta p {
+      font-size: 1.3rem;
+      line-height: 2.2;
+      text-align: left;
+      white-space: pre-line;
+      margin-bottom: 35px;
+    }
+    .assinatura {
+      margin-top: 50px;
+      text-align: right;
+      font-style: italic;
+      color: #d81b60;
+      font-size: 1.7rem;
+    }
+
+    .galeria-dentro { margin-top: 60px; }
+    .galeria-dentro h3 {
+      text-align: center;
+      color: #d81b60;
+      font-size: 2rem;
+      margin: 0 0 30px;
+    }
+    .fotos-dentro {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .fotos-dentro img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .fotos-dentro img:hover { transform: scale(1.08); }
+
+    @media (max-width: 480px) {
+      .inicio h1 { font-size: 2.3rem; }
+      .conteudo-carta h2 { font-size: 2.1rem; }
+      .conteudo-carta p { font-size: 1.22rem; }
+      .assinatura { font-size: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>PARABÉNS PELA FORMATURA,<br>ANA LAURA! 🎓</h1>
-            <p class="subtitle">Você concluiu mais uma etapa na sua vida, e coisas incríveis estão por vir!</p>
-        </header>
+  <!-- TELA INICIAL -->
+  <div class="inicio" id="inicio">
+    <h1>Parabéns, Ana Laura! 🎓</h1>
 
-        <!-- Botão da cartinha -->
-        <div class="carta-btn" onclick="abrirCarta()">
-        <img src="https://drive.google.com/uc?export=view&id=18E-X2vN65k9TrvQ0EzgLTk7j0CxWliWl" alt="Ler cartinha">
-        <p>Toque aqui para ler a cartinha ✉️</p>
-        </div>
-
-        <section class="frases">
-            <div class="frase">“Você é mais forte do que imagina e mais amada do que consegue ver.” 💕</div>
-            <div class="frase">“O futuro é seu, vai com tudo e arrasa!” 🚀</div>
-            <div class="frase">“Formada e ainda mais linda por dentro e por fora!” 🌸</div>
-            <div class="frase">“Que venham muitas aventuras e histórias lindas!” ✈️</div>
-        </section>
-
-        <section class="galeria">
-            <h2>Memórias favoritas📸</h2>
-            <div class="fotos">
-                <!-- ⇣⇣⇣ COLOQUE OS IDs DAS SUAS FOTOS DO DRIVE AQUI ⇣⇣⇣ -->
-                <img src="https://drive.google.com/file/d/1GRjysbUNgQY3NFIGKM7Qfg3EZ3IMBiJw/view?usp=drive_link" alt="Foto 1">
-                <img src="https://drive.google.com/file/d/1BC3aaZKlWPfi2hcjL17k2VKJX46qrSPq/view?usp=drive_link" alt="Foto 2">
-                <img src="https://drive.google.com/file/d/1GRjysbUNgQY3NFIGKM7Qfg3EZ3IMBiJw/view?usp=drive_link" alt="Foto 3">
-                <img src="https://drive.google.com/file/d/1qC-vgs_vrWX40uDS9LP7l79UqhY4-OId/view?usp=drive_link" alt="Foto 4">
-                <img src="https://drive.google.com/file/d/12ycS0T434AR3P2H3P_uCamI-IP5HLd2p/view?usp=drive_link" alt="Foto 5">
-                <!-- adicione quantas quiser -->
-            </div>
-        </section>
-
-        <footer>
-            <p>Feito com todo carinho por Duda 💌 • 2025</p>
-        </footer>
+    <div class="fotos-inicio">
+      <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_2079.JPEG" alt="Ana">
+      <img src="https://github.com/sMEduarda/ana_formatura/raw/main/Captura%20de%20tela%202025-11-27%20194545.png" alt="Ana">
+      <img src="https://github.com/sMEduarda/ana_formatura/raw/main/Screenshot_20251127_171656_TikTok.jpg" alt="Ana">
+      <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_2082.JPEG" alt="Ana">
     </div>
 
-    <!-- CARTINHA EM PERGAMINHO -->
-    <div id="modalCarta" class="modal">
-        <div class="pergaminho">
-            <span class="fechar" onclick="fecharCarta()">×</span>
-            <div class="carta-texto">
-                <h2>Ana Laura,</h2>
-                <p>
-                    Ana Laura,
-                    Fico muito feliz por você esta finalizando uma etapa da sua vida, e
-                    sinto por não estar presente para prestigiar esse momento. Ainda
-                    que de longe, eu torço e celebro uma conquista tão especial!
+    <button class="abrir" onclick="abrirCarta()">Clique aqui para ver a cartinha 💌</button>
+  </div>
 
-                    Você encerra um ciclo importante, cheio de aprendizados,
-                    amizades, desafios e momentos que vão ficar marcados para sempre.
+  <!-- CARTA + GALERIA -->
+  <div class="carta" id="carta" onclick="fecharCarta()">
+    <div class="conteudo-carta" onclick="event.stopPropagation()">
+      <button class="fechar" onclick="fecharCarta()">×</button>
+      
+      <h2>Para: Ana Laura! 💕</h2>
+      
+      <p>Ana Laura,
 
-                    Fico feliz em ver a pessoa incrível que você se tornou: amiga,
-                    gentil, forte e cheia de vida. Que venham novos desafios, novas
-                    conquistas, novos rolês e, claro, muitas novas histórias para
-                    contar. A vida está só começando! Agora, na faculdade, você vai
-                    conhecer pessoas novas, novos ambientes, e tenho certeza de
-                    que você vai adorar e que será uma experiência incrível.
+Fico muito feliz por você estar finalizando uma etapa da sua vida, e sinto por não estar presente para prestigiar esse momento. Ainda que de longe, eu torço e celebro uma conquista tão especial! 
 
-                    Que você brilhe por onde passar!
+Você encerra um ciclo importante, cheio de aprendizados, amizades, desafios e momentos que vão ficar marcados para sempre.
 
-                    Que Nossa Senhora te cubra com o manto sagrado e que Deus
-                    ilumine e guie sua nova caminhada.
+Fico feliz em ver a pessoa incrível que você se tornou: amiga, gentil, forte e cheia de vida. Que venham novos desafios, novas conquistas, novos rolês e, claro, muitas novas histórias para contar. A vida está só começando! Agora, na faculdade, você vai conhecer pessoas novas, novos ambientes, e tenho certeza de que será uma experiência incrível. 
 
-                    Obrigada por fazer parte da minha vida e por deixar tudo mais leve
-                    com seu jeitinho doce e divertido. Guardo sempre as nossas
-                    memórias no coração. 
-                    
-                    Que seu caminho seja leve e que cada
-                    passo seja guiado pelo amor e pela coragem. Estou torcendo por
-                    você, hoje e sempre.<br><br>
-                    
-                    <strong>Com carinho,<br>Duda ❤️</strong>
-                </p>
-            </div>
+Que você brilhe por onde passar!
+Que Nossa Senhora te cubra com o manto sagrado e que Deus ilumine e guie sua nova caminhada. 
+
+Obrigada por fazer parte da minha vida e por deixar tudo mais leve com seu jeitinho doce e divertido. Guardo sempre as nossas memórias no coração. Que seu caminho seja leve e que cada passo seja guiado pelo amor e pela coragem. Estou torcendo por você, hoje e sempre. </p>
+
+      <div class="assinatura">
+        Com carinho, Duda. ✨<br>
+      </div>
+
+      <div class="galeria-dentro">
+        <h3>✈ MEMÓRIAS ✈</h3>
+        <div class="fotos-dentro">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/026732cc-ecb2-42c1-991e-5ada915d5730.jpg" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/445031ab-4ff2-4642-aba7-11ef40a77e77.jpg" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_0423.JPEG" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_0443.JPEG" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_1443.JPEG" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_2831.JPEG" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/IMG_7582.JPEG" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/Screenshot_20251127_171807_TikTok.jpg" alt="memória">
+          <img src="https://github.com/sMEduarda/ana_formatura/raw/main/WhatsApp%20Image%202025-11-27%20at%2016.08.39.jpeg" alt="memória">
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- CONFETES MÁGICOS -->
-    <canvas id="confetti-canvas"></canvas>
+  <!-- SCRIPT COM BALÕES + CONFETES + CORAÇÕES -->
+  <script>
+    function abrirCarta() {
+      // Confetes caindo
+      confetti({ particleCount: 300, spread: 85, origin: { y: 0.6 }, colors: ['#ff4081', '#ff79b0', '#ffd1e8', '#ffb3d9'] });
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-    <script>
-        // Confetinhos caindo suavemente o tempo todo
-        setInterval(function() {
-            confetti({
-                particleCount: 5,
-                angle: 90,
-                spread: 45,
-                origin: { x: 0.5, y: 0 },
-                colors: ['#ff6b9d', '#ffb3d1', '#a7e9ff', '#ffd700', '#ff69b4'],
-                gravity: 0.3,
-                scalar: 1.2
-            });
-        }, 800);
+      // Balões subindo (super fofo!)
+      confetti({
+        particleCount: 40,
+        angle: 90,
+        spread: 45,
+        origin: { y: 1.1 },
+        gravity: -0.08,
+        scalar: 2.2,
+        shapes: ['circle'],
+        colors: ['#ff4081', '#ffd700', '#ffffff', '#ff79b0'],
+        ticks: 300
+      });
 
-        // Explosão gigante quando abrir a carta
-        function abrirCarta() {
-            document.getElementById("modalCarta").style.display = "flex";
-            confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
-            confetti({ particleCount: 100, angle: 60, spread: 70, origin: { x: 0 } });
-            confetti({ particleCount: 100, angle: 120, spread: 70, origin: { x: 1 } });
-        }
+      setTimeout(() => {
+        confetti({ particleCount: 180, angle: 60, spread: 60, origin: { x: 0 } });
+        confetti({ particleCount: 180, angle: 120, spread: 60, origin: { x: 1 } });
+      }, 300);
 
-        function fecharCarta() {
-            document.getElementById("modalCarta").style.display = "none";
-        }
+      document.getElementById('carta').style.display = 'flex';
+      document.getElementById('inicio').style.display = 'none';
+    }
 
-        // Fechar clicando fora
-        window.onclick = function(e) {
-            if (e.target === document.getElementById("modalCarta")) fecharCarta();
-        }
-    </script>
+    function fecharCarta() {
+      // Confetes + corações + balões ao fechar
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.7 }, colors: ['#ff4081', '#ff79b0', '#ffd1e8'] });
+      confetti({ particleCount: 80, spread: 120, origin: { y: 0.8 }, gravity: -0.1, scalar: 1.8, shapes: ['heart'], colors: ['#ff4081', '#ff1493', '#ff69b4'] });
+      confetti({ particleCount: 30, angle: 90, spread: 50, origin: { y: 1.1 }, gravity: -0.07, scalar: 2.5, shapes: ['circle'], colors: ['#ffd700', '#ffffff', '#ff4081'], ticks: 400 });
+
+      document.getElementById('carta').style.display = 'none';
+      document.getElementById('inicio').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
